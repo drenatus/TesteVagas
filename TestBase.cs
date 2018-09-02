@@ -78,10 +78,12 @@ namespace SeleniumTests
 
           public void EditarNome(string nomecandidato)
         {
-            driver.FindElement(By.ClassName("edit-link")).Click();
+            //driver.FindElement(By.ClassName("edit-link")).Click();
+            driver.FindElement(By.Id("cv-nome")).Click();
             wait.Until(ExpectedConditions.ElementExists(By.Id("curriculo_nome_completo")));
             driver.FindElement(By.Id("curriculo_nome_completo")).Clear();
             driver.FindElement(By.Id("curriculo_nome_completo")).SendKeys(nomecandidato);
+            BotaoSalvar();
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".nome-candidato")));
             Assert.AreEqual(nomecandidato, driver.FindElement(By.CssSelector(".nome-candidato")).Text);      
         }
@@ -96,8 +98,8 @@ namespace SeleniumTests
 
        public void EditarDadosPessoais(string dtnascimento, string genero, string estadocivil, string filhos, string nacionalidade, string paisdocs, string tipodoc, string doc)
         {
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-dados']/a")));
-                driver.FindElement(By.XPath("//*[@id='cv-dados']/a")).Click();
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cv-dados")));
+                driver.FindElement(By.Id("cv-dados")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("dados_pessoais_data_de_nascimento")));
                 driver.FindElement(By.Id("dados_pessoais_data_de_nascimento")).SendKeys(dtnascimento);
                 //decidir como clicar no genero, radio button 
@@ -113,13 +115,14 @@ namespace SeleniumTests
           wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
           driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
           wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
-          new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByText(pais);
+          new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByValue(pais);
           driver.FindElement(By.Id("endereco_cep")).SendKeys(cep);
-          new SelectElement(driver.FindElement(By.Id("endereco_uf_id"))).SelectByText(uf);
-          new SelectElement(driver.FindElement(By.Id("endereco_cidade_id"))).SelectByText(cidade);
+          new SelectElement(driver.FindElement(By.Id("endereco_uf_id"))).SelectByValue(uf);
+          Thread.Sleep(1000);
+          new SelectElement(driver.FindElement(By.Id("endereco_cidade_id"))).SelectByValue(cidade);
           driver.FindElement(By.Id("endereco_bairro")).SendKeys(bairro);
-          driver.FindElement(By.Id("endereco_cep")).SendKeys(cep);
-
+          driver.FindElement(By.Id("endereco_logradouro")).SendKeys(endereco);        
+          driver.FindElement(By.Id("edit_endereco_")).Click();
         }
 
          public void EditarInformacoesDeContato(string email, string confemail, string telefone, string paiscel, string dddcel, string numcel)
@@ -134,6 +137,7 @@ namespace SeleniumTests
              driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).SendKeys(dddcel);
              driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).SendKeys(numcel);
              driver.FindElement(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")).Click();
+             driver.FindElement(By.Id("edit_informacoes_de_contato_")).Click();
         }
                 
                 

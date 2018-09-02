@@ -18,39 +18,15 @@ namespace SeleniumTests
         {
            GoToUrl("/login-candidatos");                                         
            Login("drenatus","304050"); 
-           ClicarAtualizarCurriculo();  
-           //GoToUrl("servicos/curriculo");
-           EditarNome("Teste Vagas " + GeraNumeroAleatorio());   
-           EditarEndereco("Brasil","04551000","SP","Sao Paulo","","Rua Teste");  
-
-           
-        }
-
-
-        [Test]
-
-        public void EdicaoDadosPessoais()
-        {
+           //ClicarAtualizarCurriculo();  
+           GoToUrl("/servicos/curriculo");
+           EditarNome("Teste Vagas " + GeraNumeroAleatorio());  
+           //EditarDadosPessoais()
+           EditarEndereco("31","04551000","26","88412","Bairro Teste","Rua Teste");  
+           EditarInformacoesDeContato("teste@teste.com","teste@teste.com","1155555533","","","");
 
         }
 
-        [Test]
-     public void EdicaoEndereco()
-        {
-
-        }
-
-        [Test]
-     public void EdicaoInfoContatos()
-        {
-
-        }
-
-        [Test]
-         public void EdicaoDeficiencias()
-        {
-
-        }
 
 
 }
