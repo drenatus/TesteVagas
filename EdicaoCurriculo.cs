@@ -16,11 +16,13 @@ namespace SeleniumTests
        [Test]
         public void EditarCurriculo()
         {
-           GoToUrl("/login-candidatos");
-           Login("drenatus","304050");
-           ClicarAtualizarCurriculo();
+           GoToUrl("/login-candidatos");                                         
+           Login("drenatus","304050"); 
+           ClicarAtualizarCurriculo();  
+           //GoToUrl("servicos/curriculo");
            EditarNome("Teste Vagas " + GeraNumeroAleatorio());   
-           EditarEndereco("04551000");        
+           EditarEndereco("Brasil","04551000","SP","Sao Paulo","","Rua Teste");  
+
            
         }
 
