@@ -5643,30 +5643,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\renat\\.nuget\\packages\\": {},
+    "C:\\Users\\Karina\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VS\\VagasTest\\VagasTest.csproj",
+      "projectUniqueName": "c:\\Users\\Karina\\Documents\\VSCode\\TesteVagas\\VagasTest.csproj",
       "projectName": "VagasTest",
-      "projectPath": "D:\\VS\\VagasTest\\VagasTest.csproj",
-      "packagesPath": "C:\\Users\\renat\\.nuget\\packages\\",
-      "outputPath": "D:\\VS\\VagasTest\\obj\\",
+      "projectPath": "c:\\Users\\Karina\\Documents\\VSCode\\TesteVagas\\VagasTest.csproj",
+      "packagesPath": "C:\\Users\\Karina\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Karina\\Documents\\VSCode\\TesteVagas\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\renat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Karina\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

@@ -57,7 +57,7 @@ namespace SeleniumTests
             driver.FindElement(By.Id("login_candidatos_form_usuario")).SendKeys(login);
             driver.FindElement(By.Id("login_candidatos_form_senha")).SendKeys(senha);
             driver.FindElement(By.Name("commit")).Click();
-            wait.Until(ExpectedConditions.ElementExists(By.Id("servicos-id")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("servicos-id")));
         }
 
           public void ClicarAtualizarCurriculo()
@@ -79,9 +79,14 @@ namespace SeleniumTests
             
         }
 
-        public void EditarEndereco()
+        public void EditarEndereco(string cep)
         {
-
+          wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
+          driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
+          wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
+          new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByText("Brasil");
+          driver.FindElement(By.Id("endereco_cep")).SendKeys(cep);
+ 
         }
 
 

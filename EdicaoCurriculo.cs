@@ -19,7 +19,8 @@ namespace SeleniumTests
            GoToUrl("/login-candidatos");
            Login("drenatus","304050");
            ClicarAtualizarCurriculo();
-           EditarNome("Teste Vagas " + GeraNumeroAleatorio());           
+           EditarNome("Teste Vagas " + GeraNumeroAleatorio());   
+           EditarEndereco("04551000");        
            
         }
 
