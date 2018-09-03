@@ -20,7 +20,8 @@ namespace SeleniumTests
            Login("drenatus","304050"); 
            //ClicarAtualizarCurriculo();  
            GoToUrl("/servicos/curriculo");
-           EditarNome("Teste Vagas " + GeraNumeroAleatorio());  
+          // EditarNome("Teste Vagas " + GeraNumeroAleatorio());  
+           AtualizaFoto();
            //EditarDadosPessoais()
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","1155555533","","","");
            EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());  

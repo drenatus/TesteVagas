@@ -75,6 +75,15 @@ namespace SeleniumTests
            driver.FindElement(By.CssSelector(".btn-danger")).Click();
         }
 
+        public void AtualizaFoto()
+        {
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cv-edit-foto")));
+            driver.FindElement(By.ClassName("cv-foto")).Click();
+            driver.FindElement(By.Id("adicionar-foto")).Click();
+            driver.FindElement(By.Id("candidato_imagem")).SendKeys("C:/bia dog.jpg");
+        }
+
+
 
           public void EditarNome(string nomecandidato)
         {
@@ -135,11 +144,11 @@ namespace SeleniumTests
              wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_email")));
              driver.FindElement(By.Id("informacoes_de_contato_email")).SendKeys(email);
              driver.FindElement(By.Id("informacoes_de_contato_confirmacao_de_email")).SendKeys(confemail);
-             driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).SendKeys(telefone);
-             new SelectElement(driver.FindElement(By.Id("informacoes_de_contato_celular_pais_id"))).SelectByText(paiscel);
-             driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).SendKeys(dddcel);
-             driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).SendKeys(numcel);
-             driver.FindElement(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")).Click();
+            // driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).SendKeys(telefone);
+           //  new SelectElement(driver.FindElement(By.Id("informacoes_de_contato_celular_pais_id"))).SelectByText(paiscel);
+           //  driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).SendKeys(dddcel);
+           //  driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).SendKeys(numcel);
+           //  driver.FindElement(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")).Click();
              driver.FindElement(By.Id("edit_informacoes_de_contato_")).Click();
         }
                 
@@ -161,7 +170,7 @@ namespace SeleniumTests
         // Generate Random Email Address 
         public static string GenerateEmailAddress()
         {
-            return "teste" + GeraNumeroAleatorio() + "@teste.com";
+            return "teste.diogo" + GeraNumeroAleatorio() + "@testevagas.com";
         }
 
         //Generate RamdomNumber
