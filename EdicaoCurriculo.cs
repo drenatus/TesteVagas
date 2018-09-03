@@ -22,9 +22,9 @@ namespace SeleniumTests
            GoToUrl("/servicos/curriculo");
            EditarNome("Teste Vagas " + GeraNumeroAleatorio());  
            //EditarDadosPessoais()
-           EditarEndereco("31","04551000","26","88412","Bairro Teste","Rua Teste");  
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","1155555533","","","");
-
+           EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());  
+           
         }
 
 

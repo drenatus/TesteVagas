@@ -98,7 +98,7 @@ namespace SeleniumTests
 
        public void EditarDadosPessoais(string dtnascimento, string genero, string estadocivil, string filhos, string nacionalidade, string paisdocs, string tipodoc, string doc)
         {
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cv-dados")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cv-dados")));
                 driver.FindElement(By.Id("cv-dados")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("dados_pessoais_data_de_nascimento")));
                 driver.FindElement(By.Id("dados_pessoais_data_de_nascimento")).SendKeys(dtnascimento);
@@ -112,22 +112,25 @@ namespace SeleniumTests
 
       public void  EditarEndereco(string pais, string cep, string uf, string cidade, string bairro, string endereco)
         {
-          wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
+          wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-endereco']/a")));
           driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
           wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
           new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByValue(pais);
           driver.FindElement(By.Id("endereco_cep")).SendKeys(cep);
+          Thread.Sleep(1000);
           new SelectElement(driver.FindElement(By.Id("endereco_uf_id"))).SelectByValue(uf);
           Thread.Sleep(1000);
           new SelectElement(driver.FindElement(By.Id("endereco_cidade_id"))).SelectByValue(cidade);
+          driver.FindElement(By.Id("endereco_bairro")).Clear();
           driver.FindElement(By.Id("endereco_bairro")).SendKeys(bairro);
+          driver.FindElement(By.Id("endereco_logradouro")).Clear();  
           driver.FindElement(By.Id("endereco_logradouro")).SendKeys(endereco);        
-          driver.FindElement(By.Id("edit_endereco_")).Click();
+          driver.FindElement(By.XPath("//*[@id='edit_endereco_']/div[3]/button")).Click();
         }
 
          public void EditarInformacoesDeContato(string email, string confemail, string telefone, string paiscel, string dddcel, string numcel)
-        {
-             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='informacoes-de-contato']/a")));
+        {  
+             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='informacoes-de-contato']/a")));
              driver.FindElement(By.XPath("//*[@id='informacoes-de-contato']/a")).Click();
              wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_email")));
              driver.FindElement(By.Id("informacoes_de_contato_email")).SendKeys(email);
