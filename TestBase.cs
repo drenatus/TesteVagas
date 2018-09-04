@@ -121,7 +121,7 @@ namespace SeleniumTests
 
       public void  EditarEndereco(string pais, string cep, string uf, string cidade, string bairro, string endereco)
         {
-          wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-endereco']/a")));
+          wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
           driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
           wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
           new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByValue(pais);
@@ -176,8 +176,9 @@ namespace SeleniumTests
                 else 
                     driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_false")).Click();
 
-               
-                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='deficiencias']/a")));
+                    driver.FindElement(By.XPath(" //*[@id='edit_deficiencias_63553688']/div[3]/button")).Click();
+
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='deficiencias']/a")));
         }
 
        

@@ -23,7 +23,7 @@ namespace SeleniumTests
            ClicaFoto(); 
            AdicionaFoto("C:/QualidadeVS/VT/TesteVagas/bin/Debug/dog_computer.jpg");        
            EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());        
-           EditarDeficiencias(true);   
+           EditarDeficiencias(false);   
            //EditarDadosPessoais()
            EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","11567785"+GeraNumeroAleatorio(),"1","21","9567785"+GeraNumeroAleatorio());
