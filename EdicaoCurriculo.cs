@@ -21,8 +21,9 @@ namespace SeleniumTests
            //ClicarAtualizarCurriculo();  
            GoToUrl("/servicos/curriculo"); 
            ClicaFoto(); 
-           AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");        
-           EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());           
+           AdicionaFoto("C:/QualidadeVS/VT/TesteVagas/bin/Debug/dog_computer.jpg");        
+           EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());        
+           EditarDeficiencias(true);   
            //EditarDadosPessoais()
            EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","11567785"+GeraNumeroAleatorio(),"1","21","9567785"+GeraNumeroAleatorio());
@@ -39,7 +40,8 @@ namespace SeleniumTests
             Login("drenatus","304050"); 
             GoToUrl("/servicos/curriculo");
             ClicaFoto();
-            AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");
+      //    AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");
+         
             ClicaFoto();
             ExcluiFoto();
         }

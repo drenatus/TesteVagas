@@ -165,12 +165,19 @@ namespace SeleniumTests
             
         
 
-          public void EditarDeficiencias()
+          public void EditarDeficiencias(bool possuidef)
         {
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='deficiencias']/a")));
                 driver.FindElement(By.XPath("//*[@id='deficiencias']/a")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deficiencias_possui_alguma_deficiencia_true")));
-                //decidir deficiencias sim nao radio button
+
+                if (possuidef)
+                    driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_true")).Click();
+                else 
+                    driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_false")).Click();
+
+               
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='deficiencias']/a")));
         }
 
        
