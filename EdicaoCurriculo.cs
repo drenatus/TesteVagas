@@ -14,20 +14,66 @@ namespace SeleniumTests
     {
 
        [Test]
-        public void EditarCurriculo()
+        public void AlteraCurriculoCompleto()
         {
            GoToUrl("/login-candidatos");                                         
            Login("drenatus","304050"); 
            //ClicarAtualizarCurriculo();  
-           GoToUrl("/servicos/curriculo");
-          // EditarNome("Teste Vagas " + GeraNumeroAleatorio());  
-           AtualizaFoto();
+           GoToUrl("/servicos/curriculo"); 
+           ClicaFoto(); 
+           AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");        
+           EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());           
            //EditarDadosPessoais()
-           EditarInformacoesDeContato("teste@teste.com","teste@teste.com","1155555533","","","");
-           EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());  
+           EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());
+           EditarInformacoesDeContato("teste@teste.com","teste@teste.com","11567785"+GeraNumeroAleatorio(),"1","21","9567785"+GeraNumeroAleatorio());
+           //EditarDeficiencias();
+
+           
            
         }
 
+        [Test]
+        public void FluxoFoto()
+        {
+            GoToUrl("/login-candidatos");                                         
+            Login("drenatus","304050"); 
+            GoToUrl("/servicos/curriculo");
+            ClicaFoto();
+            AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");
+            ClicaFoto();
+            ExcluiFoto();
+        }
+
+        [Test]
+        public void AlterarDadosPessoais()
+        {
+            GoToUrl("/login-candidatos");                                         
+            Login("drenatus","304050"); 
+            GoToUrl("/servicos/curriculo");
+           
+
+        }
+
+
+        [Test]
+          public void AlterarEndereco()
+        {
+
+        }
+
+
+        [Test]
+           public void AlterarInformacoesDeContato()
+        {
+
+        }
+
+
+        [Test]
+           public void AlterarDeficiencias()
+        {
+
+        }
 
 
 }
