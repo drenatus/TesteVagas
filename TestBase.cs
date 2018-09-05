@@ -105,14 +105,21 @@ namespace SeleniumTests
    
 
 
-       public void EditarDadosPessoais(string dtnascimento, string genero, string estadocivil, string filhos, string nacionalidade, string paisdocs, string tipodoc, string doc)
+       public void EditarDadosPessoais(string dtnascimento, string genero, string estadocivil, bool filhos, string nacionalidade, string paisdocs, string tipodoc, string doc)
         {
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cv-dados")));
                 driver.FindElement(By.Id("cv-dados")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("dados_pessoais_data_de_nascimento")));
                 driver.FindElement(By.Id("dados_pessoais_data_de_nascimento")).SendKeys(dtnascimento);
+                
                 //decidir como clicar no genero, radio button 
                 new SelectElement(driver.FindElement(By.Id("dados_pessoais_estado_civil"))).SelectByText(estadocivil);
+                
+                if (filhos)
+                   driver.FindElement(By.Id("dados_pessoais_genero_masculino")).Click();
+                else
+                   driver.FindElement(By.Id("dados_pessoais_genero_feminino")).Click();
+              
                 //decidir como clicar no filhos, radio button 
                 new SelectElement(driver.FindElement(By.Id("dados_pessoais_pais_de_nacionalidade"))).SelectByText(nacionalidade);      
         }
