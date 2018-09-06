@@ -52,10 +52,10 @@ namespace SeleniumTests
         }
 
       
-        public void Login(string login, string senha)
+        public void Login(string Login, string Senha)
         {   
-            driver.FindElement(By.Id("login_candidatos_form_usuario")).SendKeys(login);
-            driver.FindElement(By.Id("login_candidatos_form_senha")).SendKeys(senha);
+            driver.FindElement(By.Id("login_candidatos_form_usuario")).SendKeys(Login);
+            driver.FindElement(By.Id("login_candidatos_form_senha")).SendKeys(Senha);
             driver.FindElement(By.Name("commit")).Click();
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("servicos-id")));
         }
@@ -74,11 +74,17 @@ namespace SeleniumTests
         }
 
 
-        public void AdicionaFoto(string caminhofoto)
+        public void MensagemConfirmacao()
+        {
+             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("curriculoNotificacao")));
+             driver.FindElement(By.ClassName("bt-fecha-confirmacao")).Click();
+        }
+
+        public void AdicionaFoto(string CaminhoFoto)
         {
             wait.Until(ExpectedConditions.ElementExists(By.Id("adicionar-foto")));
             driver.FindElement(By.Id("adicionar-foto")).Click();
-            driver.FindElement(By.Id("candidato_imagem")).SendKeys(caminhofoto); 
+            driver.FindElement(By.Id("candidato_imagem")).SendKeys(CaminhoFoto); 
         }
 
         public void ExcluiFoto()
@@ -89,102 +95,121 @@ namespace SeleniumTests
 
 
 
-          public void EditarNome(string nomecandidato)
+          public void EditarNome(string NomeCandidato)
         {
             //driver.FindElement(By.ClassName("edit-link")).Click();
             driver.FindElement(By.XPath("//*[@id='cv-nome']/a")).Click();
             wait.Until(ExpectedConditions.ElementExists(By.Id("curriculo_nome_completo")));
             driver.FindElement(By.Id("curriculo_nome_completo")).Clear();
-            driver.FindElement(By.Id("curriculo_nome_completo")).SendKeys(nomecandidato);
+            driver.FindElement(By.Id("curriculo_nome_completo")).SendKeys(NomeCandidato);
             driver.FindElement(By.XPath("//*[@id='nome-completo-edit']/div[2]/div/div/button")).Click();
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".nome-candidato")));
-            Assert.AreEqual(nomecandidato, driver.FindElement(By.CssSelector(".nome-candidato")).Text);      
+            Assert.AreEqual(NomeCandidato, driver.FindElement(By.CssSelector(".nome-candidato")).Text);      
         }
 
            
    
 
 
-       public void EditarDadosPessoais(string dtnascimento, string genero, string estadocivil, bool filhos, string nacionalidade, string paisdocs, string tipodoc, string doc)
+       public void EditarDadosPessoais(string DtNascimento, char Genero, string EstCivil, bool Filhos, string Nacionalidade, string PaisDocs, string TipoDoc, string Doc)
         {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cv-dados")));
-                driver.FindElement(By.Id("cv-dados")).Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("dados_pessoais_data_de_nascimento")));
-                driver.FindElement(By.Id("dados_pessoais_data_de_nascimento")).SendKeys(dtnascimento);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-dados']/a")));
+            driver.FindElement(By.XPath("//*[@id='cv-dados']/a")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("dados_pessoais_data_de_nascimento")));
+            driver.FindElement(By.Id("dados_pessoais_data_de_nascimento")).SendKeys(DtNascimento);
                 
-                //decidir como clicar no genero, radio button 
-                new SelectElement(driver.FindElement(By.Id("dados_pessoais_estado_civil"))).SelectByText(estadocivil);
+            if (Genero=='M')
+                driver.FindElement(By.Id("dados_pessoais_genero_masculino")).Click();
+            else
+                driver.FindElement(By.Id("dados_pessoais_genero_feminino")).Click();
+                           
+            new SelectElement(driver.FindElement(By.Id("dados_pessoais_estado_civil"))).SelectByValue(EstCivil);
                 
-                if (filhos)
-                   driver.FindElement(By.Id("dados_pessoais_genero_masculino")).Click();
-                else
-                   driver.FindElement(By.Id("dados_pessoais_genero_feminino")).Click();
-              
-                //decidir como clicar no filhos, radio button 
-                new SelectElement(driver.FindElement(By.Id("dados_pessoais_pais_de_nacionalidade"))).SelectByText(nacionalidade);      
+            if (Filhos)
+                driver.FindElement(By.Id("filhos_sim")).Click();
+            else
+                driver.FindElement(By.Id("filhos_nao")).Click();
+         
+            new SelectElement(driver.FindElement(By.Id("dados_pessoais_pais_de_nacionalidade"))).SelectByValue(Nacionalidade);      
+            new SelectElement(driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_pais_id"))).SelectByValue(PaisDocs);
+            new SelectElement(driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_tipo_id"))).SelectByValue(TipoDoc);
+            driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_numero")).SendKeys(Doc);
+            //driver.FindElement(By.Id("btn-add-doc")).Click();
+            driver.FindElement(By.XPath("//*[@id='edit_dados_pessoais_63553688']/div[3]/button")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-dados']/a")));
+
         }
 
 
 
-      public void  EditarEndereco(string pais, string cep, string uf, string cidade, string bairro, string endereco)
+        public void  EditarEndereco(string Pais, string CEP, string UF, string Cidade, string Bairro, string Endereco)
         {
-          wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
-          driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
-          wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
-          new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByValue(pais);
-          driver.FindElement(By.Id("endereco_cep")).SendKeys(cep);
-          Thread.Sleep(1000);
-          new SelectElement(driver.FindElement(By.Id("endereco_uf_id"))).SelectByValue(uf);
-          Thread.Sleep(1000);
-          new SelectElement(driver.FindElement(By.Id("endereco_cidade_id"))).SelectByValue(cidade);
-          driver.FindElement(By.Id("endereco_bairro")).Clear();
-          driver.FindElement(By.Id("endereco_bairro")).SendKeys(bairro);
-          driver.FindElement(By.Id("endereco_logradouro")).Clear();  
-          driver.FindElement(By.Id("endereco_logradouro")).SendKeys(endereco);        
-          driver.FindElement(By.XPath("//*[@id='edit_endereco_']/div[3]/button")).Click();
-          wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-endereco']/a")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='cv-endereco']/a")));
+            driver.FindElement(By.XPath("//*[@id='cv-endereco']/a")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("endereco_pais_id")));
+            new SelectElement(driver.FindElement(By.Id("endereco_pais_id"))).SelectByValue(Pais);
+            driver.FindElement(By.Id("endereco_cep")).SendKeys(CEP);
+            Thread.Sleep(1000);
+            new SelectElement(driver.FindElement(By.Id("endereco_uf_id"))).SelectByValue(UF);
+            Thread.Sleep(1000);
+            new SelectElement(driver.FindElement(By.Id("endereco_cidade_id"))).SelectByValue(Cidade);
+            driver.FindElement(By.Id("endereco_bairro")).Clear();
+            driver.FindElement(By.Id("endereco_bairro")).SendKeys(Bairro);
+            driver.FindElement(By.Id("endereco_logradouro")).Clear();  
+            driver.FindElement(By.Id("endereco_logradouro")).SendKeys(Endereco);        
+            driver.FindElement(By.XPath("//*[@id='edit_endereco_']/div[3]/button")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-endereco']/a")));
         }
 
-         public void EditarInformacoesDeContato(string email, string confemail, string telefone, string paiscel, string dddcel, string numcel)
+         public void EditarInformacoesDeContato(string Email, string ConfEmail, string Telefone, string PaisCel, string DDDCel, string NumCel)
         {  
-             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='informacoes-de-contato']/a")));
-             driver.FindElement(By.XPath("//*[@id='informacoes-de-contato']/a")).Click();
-             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_email")));
-             driver.FindElement(By.Id("informacoes_de_contato_email")).Clear();
-             driver.FindElement(By.Id("informacoes_de_contato_email")).SendKeys(email);
-             driver.FindElement(By.Id("informacoes_de_contato_confirmacao_de_email")).Clear();
-             driver.FindElement(By.Id("informacoes_de_contato_confirmacao_de_email")).SendKeys(confemail);
-             driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).Clear();
-             driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).SendKeys(telefone);
-             new SelectElement(driver.FindElement(By.Id("informacoes_de_contato_celular_pais_id"))).SelectByValue(paiscel);
-             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_celular_ddd")));
-             driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).Clear();
-             driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).SendKeys(dddcel);
-             driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).Clear();
-             driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).SendKeys(numcel);
-             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")));
-             driver.FindElement(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")).Click();
-             driver.FindElement(By.XPath("//*[@id='edit_informacoes_de_contato_']/div[3]/button")).Click();
-             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='informacoes-de-contato']/a")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='informacoes-de-contato']/a")));
+            driver.FindElement(By.XPath("//*[@id='informacoes-de-contato']/a")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_email")));
+            driver.FindElement(By.Id("informacoes_de_contato_email")).Clear();
+            driver.FindElement(By.Id("informacoes_de_contato_email")).SendKeys(Email);
+            driver.FindElement(By.Id("informacoes_de_contato_confirmacao_de_email")).Clear();
+            driver.FindElement(By.Id("informacoes_de_contato_confirmacao_de_email")).SendKeys(ConfEmail);
+            driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).Clear();
+            driver.FindElement(By.Id("informacoes_de_contato_telefone_numero")).SendKeys(Telefone);
+            new SelectElement(driver.FindElement(By.Id("informacoes_de_contato_celular_pais_id"))).SelectByValue(PaisCel);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_celular_ddd")));
+            driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).Clear();
+            driver.FindElement(By.Id("informacoes_de_contato_celular_ddd")).SendKeys(DDDCel);
+            driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).Clear();
+            driver.FindElement(By.Id("informacoes_de_contato_celular_numero")).SendKeys(NumCel);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")));
+            driver.FindElement(By.Id("informacoes_de_contato_aceita_receber_sms_de_empresas")).Click();
+            driver.FindElement(By.XPath("//*[@id='edit_informacoes_de_contato_']/div[3]/button")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='informacoes-de-contato']/a")));
         }
                 
                 
             
         
 
-          public void EditarDeficiencias(bool possuidef)
+          public void EditarDeficiencias(bool PossuiDef, string TipoDef, string TipoDefDetalhe, string DefObs)
         {
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='deficiencias']/a")));
-                driver.FindElement(By.XPath("//*[@id='deficiencias']/a")).Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deficiencias_possui_alguma_deficiencia_true")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='deficiencias']/a")));
+            driver.FindElement(By.XPath("//*[@id='deficiencias']/a")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deficiencias_possui_alguma_deficiencia_true")));
 
-                if (possuidef)
-                    driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_true")).Click();
-                else 
-                    driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_false")).Click();
+            if (PossuiDef)
+            {
+                driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_true")).Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("grupo-deficiencia"))); 
+                driver.FindElement(By.Id("deficiencias_possui_deficiencia_fisica")).Click(); //amostra de campo
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='deficiencias_tipo_de_deficiencia_fisica']")));
+                new SelectElement(driver.FindElement(By.XPath("//*[@id='deficiencias_tipo_de_deficiencia_fisica']"))).SelectByValue(TipoDef);
 
-                    driver.FindElement(By.XPath(" //*[@id='edit_deficiencias_63553688']/div[3]/button")).Click();
+                driver.FindElement(By.Id("deficiencias_observacoes")).SendKeys(DefObs);  
 
+            }
+                                                    
+            else 
+                driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_false")).Click();
+
+                driver.FindElement(By.XPath("//*[@id='edit_deficiencias_63553688']/div[3]/button")).Click();
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='deficiencias']/a")));
         }
 
@@ -217,6 +242,43 @@ namespace SeleniumTests
                 return false;
             }
         }
+
+         //Gera um CPF aleatório
+        public String GerarCpf()
+        {
+            int soma = 0, resto = 0;
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+            Random rnd = new Random();
+            string semente = rnd.Next(100000000, 999999999).ToString();
+
+            for (int i = 0; i < 9; i++)
+                soma += int.Parse(semente[i].ToString()) * multiplicador1[i];
+
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+
+            semente = semente + resto;
+            soma = 0;
+
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(semente[i].ToString()) * multiplicador2[i];
+
+            resto = soma % 11;
+
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+
+            semente = semente + resto;
+            return semente;
+        }
+
         
         private bool IsAlertPresent()
         {
