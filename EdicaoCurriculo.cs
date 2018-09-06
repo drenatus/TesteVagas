@@ -16,18 +16,23 @@ namespace SeleniumTests
        [Test]
         public void AlteraCurriculoCompleto()
         {
+
            GoToUrl("/login-candidatos");                                         
            Login("drenatus","304050"); 
            //ClicarAtualizarCurriculo();  
            GoToUrl("/servicos/curriculo"); 
-           ClicaFoto(); 
-           AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");  //atualizar caminho da foto      
-           EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());        
-           EditarDadosPessoais("01/01/1990",'F',"1",false,"5","1","1",GerarCpf());
+           //ClicaFoto(); 
+           //AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");  //atualizar caminho da foto      
+           EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());
+           MensagemConfirmacao();        
+           EditarDadosPessoais("01/01/1990",'F',"1",false,"5","31","1",GerarCpf());
            MensagemConfirmacao();
-           EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio());
+           EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio()); 
+           MensagemConfirmacao();
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","11567785"+GeraNumeroAleatorio(),"1","21","9567785"+GeraNumeroAleatorio());
-           EditarDeficiencias(false,"250","","Teste Deficiência Física Amostra "+GeraNumeroAleatorio());
+           MensagemConfirmacao();
+           EditarDeficiencias(true,"250","","Teste Deficiência Física Amostra "+GeraNumeroAleatorio());
+           MensagemConfirmacao();
 
            
            

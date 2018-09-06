@@ -76,8 +76,10 @@ namespace SeleniumTests
 
         public void MensagemConfirmacao()
         {
-             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("curriculoNotificacao")));
-             driver.FindElement(By.ClassName("bt-fecha-confirmacao")).Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("bt-fecha-confirmacao")));
+            Assert.AreEqual("Dados salvos com sucesso.", driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Não preenchido.'])[9]/following::p[1]")).Text);//não consegui fazer com elemento melhor
+            driver.FindElement(By.Id("bt-fecha-confirmacao")).Click();
+            Thread.Sleep(1000);
         }
 
         public void AdicionaFoto(string CaminhoFoto)
@@ -105,7 +107,8 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("//*[@id='nome-completo-edit']/div[2]/div/div/button")).Click();
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".nome-candidato")));
             Assert.AreEqual(NomeCandidato, driver.FindElement(By.CssSelector(".nome-candidato")).Text);      
-        }
+           
+        }  
 
            
    
@@ -132,12 +135,13 @@ namespace SeleniumTests
          
             new SelectElement(driver.FindElement(By.Id("dados_pessoais_pais_de_nacionalidade"))).SelectByValue(Nacionalidade);      
             new SelectElement(driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_pais_id"))).SelectByValue(PaisDocs);
+            Thread.Sleep(1000);
             new SelectElement(driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_tipo_id"))).SelectByValue(TipoDoc);
+            driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_numero")).Clear();
             driver.FindElement(By.Id("dados_pessoais_documentos_attributes_0_numero")).SendKeys(Doc);
             //driver.FindElement(By.Id("btn-add-doc")).Click();
             driver.FindElement(By.XPath("//*[@id='edit_dados_pessoais_63553688']/div[3]/button")).Click();
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='cv-dados']/a")));
-
         }
 
 
@@ -197,10 +201,10 @@ namespace SeleniumTests
             if (PossuiDef)
             {
                 driver.FindElement(By.Id("deficiencias_possui_alguma_deficiencia_true")).Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("grupo-deficiencia"))); 
-                driver.FindElement(By.Id("deficiencias_possui_deficiencia_fisica")).Click(); //amostra de campo
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("caixa-deficiencia"))); 
+                driver.FindElement(By.Id("deficiencias_possui_deficiencia_fisica")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='deficiencias_tipo_de_deficiencia_fisica']")));
-                new SelectElement(driver.FindElement(By.XPath("//*[@id='deficiencias_tipo_de_deficiencia_fisica']"))).SelectByValue(TipoDef);
+                new SelectElement(driver.FindElement(By.Id("deficiencias_tipo_de_deficiencia_fisica"))).SelectByValue(TipoDef);
 
                 driver.FindElement(By.Id("deficiencias_observacoes")).SendKeys(DefObs);  
 
