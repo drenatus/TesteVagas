@@ -29,6 +29,7 @@ namespace SeleniumTests
             driver.Manage().Window.Maximize();
             driver.Manage().Cookies.DeleteAllCookies();
             wait = new WebDriverWait(driver, new TimeSpan(0, 2, 9));
+           
         }
         
         [TearDown]
@@ -205,7 +206,7 @@ namespace SeleniumTests
                 driver.FindElement(By.Id("deficiencias_possui_deficiencia_fisica")).Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='deficiencias_tipo_de_deficiencia_fisica']")));
                 new SelectElement(driver.FindElement(By.Id("deficiencias_tipo_de_deficiencia_fisica"))).SelectByValue(TipoDef);
-
+                driver.FindElement(By.Id("deficiencias_observacoes")).Clear();  
                 driver.FindElement(By.Id("deficiencias_observacoes")).SendKeys(DefObs);  
 
             }

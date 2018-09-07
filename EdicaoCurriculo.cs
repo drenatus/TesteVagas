@@ -21,11 +21,11 @@ namespace SeleniumTests
            Login("drenatus","304050"); 
            //ClicarAtualizarCurriculo();  
            GoToUrl("/servicos/curriculo"); 
-           //ClicaFoto(); 
-           //AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");  //atualizar caminho da foto      
+           ClicaFoto(); 
+           AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg"); //atualizar caminho da foto      
            EditarNome("Diogo Teste Vagas " + GeraNumeroAleatorio());
            MensagemConfirmacao();        
-           EditarDadosPessoais("01/01/1990",'F',"1",false,"5","31","1",GerarCpf());
+           EditarDadosPessoais("01/01/1990",'M',"1",false,"5","31","1",GerarCpf());
            MensagemConfirmacao();
            EditarEndereco("31","04551000","26","88412","Bairro Teste " + GeraNumeroAleatorio(),"Rua Teste, N " + GeraNumeroAleatorio()); 
            MensagemConfirmacao();
@@ -39,48 +39,17 @@ namespace SeleniumTests
         }
 
         [Test]
-        public void FluxoFoto()
+        public void AlteraExcluiFoto()
         {
             GoToUrl("/login-candidatos");                                         
             Login("drenatus","304050"); 
             GoToUrl("/servicos/curriculo");
             ClicaFoto();
-      //    AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg");
-         
+            AdicionaFoto("D:/VS/TesteVagas/TesteVagas/bin/Debug/dog_computer.jpg"); //Atualizar caminho da foto
             ClicaFoto();
             ExcluiFoto();
         }
 
-        [Test]
-        public void AlterarDadosPessoais()
-        {
-            GoToUrl("/login-candidatos");                                         
-            Login("drenatus","304050"); 
-            GoToUrl("/servicos/curriculo");
-           
-
-        }
-
-
-        [Test]
-          public void AlterarEndereco()
-        {
-
-        }
-
-
-        [Test]
-           public void AlterarInformacoesDeContato()
-        {
-
-        }
-
-
-        [Test]
-           public void AlterarDeficiencias()
-        {
-
-        }
 
 
 }
