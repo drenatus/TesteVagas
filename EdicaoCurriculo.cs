@@ -14,7 +14,7 @@ namespace SeleniumTests
     {
 
        [Test]
-        public void AlteraCurriculoCompleto()
+        public void AlteraDadosPessoais()
         {
 
            GoToUrl("/login-candidatos");                                         
@@ -50,8 +50,48 @@ namespace SeleniumTests
             ExcluiFoto();
         }
 
+      //   [Test]
+      //   public void AlteraObjetivos()
+      //  {
+            
+      //  }
 
 
+      //    [Test]
+      //    public void AlteraResumoProfissional()
+      //   {
+            
+      //   }
+
+       //    [Test]
+      //    public void AlteraFormacao()
+      //   {
+            
+      //   }
+
+          //    [Test]
+      //    public void AlteraIdiomas()
+      //   {
+            
+      //   }
+
+          //    [Test]
+      //    public void AlteraHistoricoProfissional()
+      //   {
+            
+      //   }
+
+          //    [Test]
+      //    public void AlteraInformacoesComplementares()
+      //   {
+            
+      //   }
+        
+         //    [Test]
+      //    public void AlteraCurriculoCompleto()
+      //   {
+            
+      //   }
 }
 
 }
