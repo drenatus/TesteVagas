@@ -85,8 +85,8 @@ namespace SeleniumTests
 
         public void AdicionaFoto(string CaminhoFoto)
         {
-            wait.Until(ExpectedConditions.ElementExists(By.Id("adicionar-foto")));
-            driver.FindElement(By.Id("adicionar-foto")).Click();
+          //wait.Until(ExpectedConditions.ElementExists(By.Id("adicionar-foto")));
+          //driver.FindElement(By.Id("adicionar-foto")).Click();
             driver.FindElement(By.Id("candidato_imagem")).SendKeys(CaminhoFoto); 
         }
 

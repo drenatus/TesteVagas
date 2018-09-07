@@ -31,7 +31,7 @@ namespace SeleniumTests
            MensagemConfirmacao();
            EditarInformacoesDeContato("teste@teste.com","teste@teste.com","11567785"+GeraNumeroAleatorio(),"1","21","9567785"+GeraNumeroAleatorio());
            MensagemConfirmacao();
-           EditarDeficiencias(true,"250","","Teste Deficiência Física Amostra "+GeraNumeroAleatorio());
+           EditarDeficiencias(false,"250","","Teste Deficiência Física Amostra "+GeraNumeroAleatorio());
            MensagemConfirmacao();
 
            
